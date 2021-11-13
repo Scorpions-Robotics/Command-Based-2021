@@ -52,4 +52,14 @@ public class RobotContainer {
   public static double getStickX(){
     return stick.getX();
   }
+
+  public static double getStickThrottle(){
+    return stick.getThrottle();
+  }
+  
+  public static double getStickScaledThrottle(){
+    double throttle = stick.getThrottle();
+    throttle = (throttle + 1) / 2; 
+    return throttle;
+  }
 }
