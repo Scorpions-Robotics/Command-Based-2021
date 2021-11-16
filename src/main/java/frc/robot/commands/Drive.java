@@ -10,9 +10,16 @@ import frc.robot.subsystems.DriveSubsystem;
 
 public class Drive extends CommandBase {
   private DriveSubsystem m_drivesubsystem;
+  private double speed;
+  private double rotation;
+  private double throttle;
 
   /** Creates a new Drive. */
-  public Drive() {
+  public Drive(DriveSubsystem m_drivesubsystem, double throttle, double speed, double rotation) {
+    this.m_drivesubsystem = m_drivesubsystem;
+    this.throttle = throttle;
+    this.speed = speed;
+    this.rotation = rotation;
     addRequirements(m_drivesubsystem);
   }
 
@@ -23,7 +30,8 @@ public class Drive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_drivesubsystem.arcadeDrive(RobotContainer.getStickScaledThrottle()*RobotContainer.getStickY(), RobotContainer.getStickScaledThrottle()*RobotContainer.getStickX());
+    throttle = (throttle + 1) / 2; 
+    m_drivesubsystem.arcadeDrive(this.throttle*this.speed, this.throttle*this.rotation);
   }
 
   // Called once the command ends or is interrupted.

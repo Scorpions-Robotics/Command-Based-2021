@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.Drive;
+import frc.robot.subsystems.DriveSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -17,12 +19,13 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-
+  DriveSubsystem m_drivesubsystem = new DriveSubsystem();
   private static final Joystick stick = new Joystick(Constants.OIConstants.kStickPort);
   private final XboxController controller = new XboxController(Constants.OIConstants.kControllerPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    m_drivesubsystem.setDefaultCommand(new Drive(m_drivesubsystem, stick.getThrottle(),stick.getY(), stick.getX()));
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -43,23 +46,5 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return null;
-  }
-
-  public static double getStickY(){
-    return stick.getY();
-  }
-
-  public static double getStickX(){
-    return stick.getX();
-  }
-
-  public static double getStickThrottle(){
-    return stick.getThrottle();
-  }
-  
-  public static double getStickScaledThrottle(){
-    double throttle = stick.getThrottle();
-    throttle = (throttle + 1) / 2; 
-    return throttle;
   }
 }
