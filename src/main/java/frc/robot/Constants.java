@@ -22,5 +22,25 @@ public final class Constants {
         public static final int kRightFollowerID = 6;
         public static final int kLeftLeaderID = 1;
         public static final int kRightLeaderID = 2;
+        public static final int kShooterLeftID = 7;
+        public static final int kShooterRightID = 8;
+        public static final int kIntakeID = 9;
+    }
+    public final class PWMIDs{
+        public static final int kBandMotorID = 0;
+    }
+	public final class Variables{
+        public static final double kLeftShooterSpeed = -0.83;
+        public static final double kRightShooterSpeed = 0.83;
+    }
+    public final class Pneumatics{
+        public static final int kShooterLidSolenoidID1 = 2;  
+        public static final int kShooterLidSolenoidID2 = 3;
+
+        public static final int kIntakeSolenoidID1 = 4;
+        public static final int kIntakeSolenoidID2 = 5;
+
+        public static final int kElevatorSolenoidID1 = 6;
+        public static final int kElevatorSolenoidID2 = 7;
     }
 }
