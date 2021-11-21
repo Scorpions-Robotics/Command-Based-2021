@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Drive;
 import frc.robot.commands.ElevatorPneumatic;
 import frc.robot.commands.IntakeAndBand;
+import frc.robot.commands.IntakePneumatic;
 import frc.robot.commands.Shooter;
 import frc.robot.commands.ShooterLid;
 import frc.robot.subsystems.BandSubsystem;
@@ -55,6 +56,8 @@ public class RobotContainer {
     new JoystickButton(stick,3).whileHeld(new IntakeAndBand(m_intakesubsytem, m_bandsubsytem, 1));
     new JoystickButton(stick,6).whileHeld(new ElevatorPneumatic(m_shootersubsystem,true));
     new JoystickButton(stick,7).whileHeld(new ElevatorPneumatic(m_shootersubsystem,false));
+    new JoystickButton(stick,11).whileHeld(new IntakePneumatic(m_intakesubsytem, true));
+    new JoystickButton(stick,10).whileHeld(new IntakePneumatic(m_intakesubsytem, false));
   }
 
   /**
