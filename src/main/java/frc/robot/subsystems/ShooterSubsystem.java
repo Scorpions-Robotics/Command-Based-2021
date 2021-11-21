@@ -16,6 +16,7 @@ public class ShooterSubsystem extends SubsystemBase {
   WPI_VictorSPX shooterRight = new WPI_VictorSPX(Constants.CANIDs.kShooterRightID);
 
   DoubleSolenoid shooter_solenoid = new DoubleSolenoid(Constants.Pneumatics.kShooterLidSolenoidID1, Constants.Pneumatics.kShooterLidSolenoidID2);
+  DoubleSolenoid elevator_solenoid = new DoubleSolenoid(Constants.Pneumatics.kElevatorSolenoidID1, Constants.Pneumatics.kElevatorSolenoidID2);
   /** Creates a new Shooter. */
   public ShooterSubsystem() {}
 
@@ -33,6 +34,15 @@ public class ShooterSubsystem extends SubsystemBase {
     }
     else{
       shooter_solenoid.set(DoubleSolenoid.Value.kOff);
+    }
+  }
+
+  public void setElevator(boolean status){
+    if(status){
+      elevator_solenoid.set(DoubleSolenoid.Value.kForward);
+    }
+    else{
+      elevator_solenoid.set(DoubleSolenoid.Value.kOff);
     }
   }
   

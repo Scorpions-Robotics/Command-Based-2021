@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Drive;
+import frc.robot.commands.ElevatorPneumatic;
 import frc.robot.commands.IntakeAndBand;
 import frc.robot.commands.Shooter;
 import frc.robot.commands.ShooterLid;
@@ -49,9 +50,11 @@ public class RobotContainer {
   private void configureButtonBindings() {
     new JoystickButton(stick,1).whileHeld(new Shooter(m_shootersubsystem));
     new JoystickButton(stick,5).whileHeld(new ShooterLid(m_shootersubsystem,true));
-    new JoystickButton(stick,6).whileHeld(new ShooterLid(m_shootersubsystem,false));
+    new JoystickButton(stick,9).whileHeld(new ShooterLid(m_shootersubsystem,false));
     new JoystickButton(stick,2).whileHeld(new IntakeAndBand(m_intakesubsytem, m_bandsubsytem, -1));
     new JoystickButton(stick,3).whileHeld(new IntakeAndBand(m_intakesubsytem, m_bandsubsytem, 1));
+    new JoystickButton(stick,6).whileHeld(new ElevatorPneumatic(m_shootersubsystem,true));
+    new JoystickButton(stick,7).whileHeld(new ElevatorPneumatic(m_shootersubsystem,false));
   }
 
   /**
