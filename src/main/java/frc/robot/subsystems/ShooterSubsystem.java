@@ -28,6 +28,10 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterRight.set(Constants.Variables.kRightShooterSpeed);
   }
 
+  public void stopShooters(){
+    shooterLeft.set(0);
+    shooterRight.set(0);
+  }
   public void setShooterLid(boolean status){
     if(status){
       shooter_solenoid.set(DoubleSolenoid.Value.kForward);

@@ -32,12 +32,12 @@ public class RobotContainer {
   ShooterSubsystem m_shootersubsystem = new ShooterSubsystem();
   IntakeSubsystem m_intakesubsytem = new IntakeSubsystem();
   BandSubsystem m_bandsubsytem = new BandSubsystem();
-  private static final Joystick stick = new Joystick(Constants.OIConstants.kStickPort);
+  public static final Joystick stick = new Joystick(Constants.OIConstants.kStickPort);
   private final XboxController controller = new XboxController(Constants.OIConstants.kControllerPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    m_drivesubsystem.setDefaultCommand(new Drive(m_drivesubsystem, stick.getThrottle(),stick.getY(), stick.getX()));
+    m_drivesubsystem.setDefaultCommand(new Drive(m_drivesubsystem, stick.getThrottle()));
     // Configure the button bindings
     configureButtonBindings();
   }

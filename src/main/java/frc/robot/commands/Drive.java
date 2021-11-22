@@ -4,22 +4,21 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveSubsystem;
 
 public class Drive extends CommandBase {
   private DriveSubsystem m_drivesubsystem;
-  private double speed;
-  private double rotation;
   private double throttle;
 
   /** Creates a new Drive. */
-  public Drive(DriveSubsystem m_drivesubsystem, double throttle, double speed, double rotation) {
+  public Drive(DriveSubsystem m_drivesubsystem, double throttle) {
     this.m_drivesubsystem = m_drivesubsystem;
     this.throttle = throttle;
-    this.speed = speed;
-    this.rotation = rotation;
+   
+
     addRequirements(m_drivesubsystem);
   }
 
@@ -31,7 +30,8 @@ public class Drive extends CommandBase {
   @Override
   public void execute() {
     throttle = (throttle + 1) / 2; 
-    m_drivesubsystem.arcadeDrive(this.throttle*this.speed, this.throttle*this.rotation);
+    m_drivesubsystem.arcadeDrive(this.throttle*RobotContainer.stick.getY(), this.throttle*RobotContainer.stick.getX());
+    SmartDashboard.putNumber("throttle",this.throttle);
   }
 
   // Called once the command ends or is interrupted.
