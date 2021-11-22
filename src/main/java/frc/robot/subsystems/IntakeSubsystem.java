@@ -22,12 +22,13 @@ public class IntakeSubsystem extends SubsystemBase {
   public void turnIntake(double speed){
     intakeMotor.set(speed);
   }
-  public void setIntake(boolean status){
-    if(status){
-      intake_solenoid.set(DoubleSolenoid.Value.kForward);
-    }
-    else{
-      intake_solenoid.set(DoubleSolenoid.Value.kOff);
-    }
+
+
+  public void push(){
+    intake_solenoid.set(DoubleSolenoid.Value.kForward);
+  }
+
+  public void back(){
+    intake_solenoid.set(DoubleSolenoid.Value.kOff);
   }
 }

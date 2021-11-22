@@ -4,18 +4,15 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ShooterSubsystem;
 
-public class ShooterLid extends CommandBase {
-  /** Creates a new ShooterLib. */
-  private boolean status;
+public class ShooterLidBack extends CommandBase {
+  /** Creates a new ShooterLibBack. */
   private ShooterSubsystem m_shootersubsystem;
-  public ShooterLid(ShooterSubsystem m_shootersubsystem, boolean status) {
-    // Use addRequirements() here to declare subsystem dependencies.
+  public ShooterLidBack(ShooterSubsystem m_shootersubsystem) {
     this.m_shootersubsystem = m_shootersubsystem;
-    this.status = status;
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -25,8 +22,7 @@ public class ShooterLid extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_shootersubsystem.setShooterLid(status);
-    SmartDashboard.putBoolean("status", status);
+    m_shootersubsystem.backShooterLid();
   }
 
   // Called once the command ends or is interrupted.

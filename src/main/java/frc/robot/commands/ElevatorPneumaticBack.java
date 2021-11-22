@@ -5,15 +5,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 
-public class IntakePneumatic extends CommandBase {
-  private boolean status;
-  private IntakeSubsystem m_intakesubsystem;
-  /** Creates a new IntakePneumatic. */
-  public IntakePneumatic(IntakeSubsystem m_intakesubsystem, boolean status) {
-    this.m_intakesubsystem = m_intakesubsystem;
-    this.status = status;
+public class ElevatorPneumaticBack extends CommandBase {
+  private ShooterSubsystem m_shootersubsystem;
+  /** Creates a new ElevatorPneumaticBack. */
+  public ElevatorPneumaticBack(ShooterSubsystem m_shootersubsystem) {
+    this.m_shootersubsystem = m_shootersubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -24,7 +22,7 @@ public class IntakePneumatic extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_intakesubsystem.setIntake(status);
+    m_shootersubsystem.backElevator();
   }
 
   // Called once the command ends or is interrupted.

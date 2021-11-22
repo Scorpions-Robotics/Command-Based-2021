@@ -32,22 +32,20 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterLeft.set(0);
     shooterRight.set(0);
   }
-  public void setShooterLid(boolean status){
-    if(status){
-      shooter_solenoid.set(DoubleSolenoid.Value.kForward);
-    }
-    else{
-      shooter_solenoid.set(DoubleSolenoid.Value.kOff);
-    }
+  public void pushShooterLid(){
+    shooter_solenoid.set(DoubleSolenoid.Value.kForward);
   }
 
-  public void setElevator(boolean status){
-    if(status){
-      elevator_solenoid.set(DoubleSolenoid.Value.kForward);
-    }
-    else{
-      elevator_solenoid.set(DoubleSolenoid.Value.kOff);
-    }
+  public void pushElevator(){
+    elevator_solenoid.set(DoubleSolenoid.Value.kForward);
+  }
+
+  public void backElevator(){
+    elevator_solenoid.set(DoubleSolenoid.Value.kOff);
+  }
+
+  public void backShooterLid(){
+    shooter_solenoid.set(DoubleSolenoid.Value.kOff);
   }
   
 }

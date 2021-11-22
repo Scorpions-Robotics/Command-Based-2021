@@ -10,11 +10,14 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.Drive;
-import frc.robot.commands.ElevatorPneumatic;
+import frc.robot.commands.ElevatorPneumaticBack;
+import frc.robot.commands.ElevatorPneumaticPush;
 import frc.robot.commands.IntakeAndBand;
-import frc.robot.commands.IntakePneumatic;
+import frc.robot.commands.IntakePneumaticBack;
+import frc.robot.commands.IntakePneumaticPush;
 import frc.robot.commands.Shooter;
-import frc.robot.commands.ShooterLid;
+import frc.robot.commands.ShooterLidBack;
+import frc.robot.commands.ShooterLidPush;
 import frc.robot.subsystems.BandSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -50,14 +53,14 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(stick,1).whileHeld(new Shooter(m_shootersubsystem));
-    new JoystickButton(stick,5).whileHeld(new ShooterLid(m_shootersubsystem,true));
-    new JoystickButton(stick,9).whileHeld(new ShooterLid(m_shootersubsystem,false));
+    new JoystickButton(stick,5).whileHeld(new ShooterLidPush(m_shootersubsystem));
+    new JoystickButton(stick,9).whileHeld(new ShooterLidBack(m_shootersubsystem));
     new JoystickButton(stick,2).whileHeld(new IntakeAndBand(m_intakesubsytem, m_bandsubsytem, -1));
     new JoystickButton(stick,3).whileHeld(new IntakeAndBand(m_intakesubsytem, m_bandsubsytem, 1));
-    new JoystickButton(stick,6).whileHeld(new ElevatorPneumatic(m_shootersubsystem,true));
-    new JoystickButton(stick,7).whileHeld(new ElevatorPneumatic(m_shootersubsystem,false));
-    new JoystickButton(stick,11).whileHeld(new IntakePneumatic(m_intakesubsytem, true));
-    new JoystickButton(stick,10).whileHeld(new IntakePneumatic(m_intakesubsytem, false));
+    new JoystickButton(stick,6).whileHeld(new ElevatorPneumaticPush(m_shootersubsystem));
+    new JoystickButton(stick,7).whileHeld(new ElevatorPneumaticBack(m_shootersubsystem));
+    new JoystickButton(stick,11).whileHeld(new IntakePneumaticPush(m_intakesubsytem));
+    new JoystickButton(stick,10).whileHeld(new IntakePneumaticBack(m_intakesubsytem));
   }
 
   /**
