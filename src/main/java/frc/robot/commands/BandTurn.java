@@ -8,12 +8,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.BandSubsystem;
 
-public class Band extends CommandBase {
+public class BandTurn extends CommandBase {
 
   private BandSubsystem m_bandsubsytem;
   private double speed;
   /** Creates a new Band. */
-  public Band(BandSubsystem m_bandsubsytem, double speed) {
+  public BandTurn(BandSubsystem m_bandsubsytem, double speed) {
     this.m_bandsubsytem = m_bandsubsytem;
     this.speed = speed;
     addRequirements(m_bandsubsytem);
@@ -32,12 +32,11 @@ public class Band extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_bandsubsytem.turnBand(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return !RobotContainer.stick.getRawButton(2);
+    return false;
   }
 }

@@ -29,6 +29,6 @@ public class IntakeSubsystem extends SubsystemBase {
   }
 
   public void back(){
-    intake_solenoid.set(DoubleSolenoid.Value.kOff);
+    intake_solenoid.set(DoubleSolenoid.Value.kReverse);
   }
 }

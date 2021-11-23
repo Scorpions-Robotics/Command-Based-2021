@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.IntakeSubsystem;
 
-public class Intake extends CommandBase {
+public class IntakeTurn extends CommandBase {
   private double speed;
   private IntakeSubsystem m_intakesubsytem;
   /** Creates a new Intake. */
-  public Intake(IntakeSubsystem m_intakesubsytem, double speed) {
+  public IntakeTurn(IntakeSubsystem m_intakesubsytem, double speed) {
     this.m_intakesubsytem = m_intakesubsytem;
     this.speed = speed;
     addRequirements(m_intakesubsytem);
@@ -31,12 +31,11 @@ public class Intake extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_intakesubsytem.turnIntake(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return !RobotContainer.stick.getRawButton(2);
+    return false;
   }
 }

@@ -32,15 +32,16 @@ public final class Constants {
 	public final class Variables{
         public static final double kLeftShooterSpeed = -0.83;
         public static final double kRightShooterSpeed = 0.83;
+		public static final double kZero = 0;
     }
     public final class Pneumatics{
-        public static final int kShooterLidSolenoidID1 = 2;  
-        public static final int kShooterLidSolenoidID2 = 3;
+        public static final int kShooterLidSolenoidID1 = 6;  
+        public static final int kShooterLidSolenoidID2 = 7;
 
-        public static final int kIntakeSolenoidID1 = 4;
-        public static final int kIntakeSolenoidID2 = 5;
+        public static final int kIntakeSolenoidID1 = 2;
+        public static final int kIntakeSolenoidID2 = 3;
 
-        public static final int kElevatorSolenoidID1 = 6;
-        public static final int kElevatorSolenoidID2 = 7;
+        public static final int kElevatorSolenoidID1 = 4;
+        public static final int kElevatorSolenoidID2 = 5;
     }
 }

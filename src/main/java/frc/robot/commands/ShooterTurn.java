@@ -8,11 +8,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.ShooterSubsystem;
 
-public class Shooter extends CommandBase {
+public class ShooterTurn extends CommandBase {
   /** Creates a new Shooter. */
   ShooterSubsystem m_shootersubsystem;
-  public Shooter(ShooterSubsystem m_shootersubsystem) {
+  double speed;
+  public ShooterTurn(ShooterSubsystem m_shootersubsystem, double speed) {
     this.m_shootersubsystem = m_shootersubsystem;
+    this.speed = speed;
     addRequirements(m_shootersubsystem);
   }
 
@@ -23,18 +25,17 @@ public class Shooter extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_shootersubsystem.turnShooters();
+    m_shootersubsystem.turnShooters(speed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_shootersubsystem.stopShooters();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return !RobotContainer.stick.getRawButton(1);
+    return false;
   }
 }

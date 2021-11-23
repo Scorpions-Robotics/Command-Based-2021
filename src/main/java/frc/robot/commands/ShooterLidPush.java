@@ -24,7 +24,6 @@ public class ShooterLidPush extends CommandBase {
   @Override
   public void execute() {
     m_shootersubsystem.pushShooterLid();
-   
   }
 
   // Called once the command ends or is interrupted.
@@ -34,6 +33,6 @@ public class ShooterLidPush extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

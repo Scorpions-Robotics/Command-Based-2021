@@ -13,7 +13,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class IntakeAndBand extends ParallelCommandGroup {
   /** Creates a new IntakeAndBand. */
-  public IntakeAndBand(IntakeSubsystem m_intakesubsytem, BandSubsystem m_bandsubsytem, double speed) {
-    addCommands(new Intake((m_intakesubsytem), speed), new Band(m_bandsubsytem,speed*-1));
+  public IntakeAndBand(IntakeSubsystem m_intakesubsystem, BandSubsystem m_bandsubsytem, double speed) {
+    addCommands(new IntakeTurn((m_intakesubsystem), speed), new BandTurn(m_bandsubsytem,speed*-1));
   }
 }

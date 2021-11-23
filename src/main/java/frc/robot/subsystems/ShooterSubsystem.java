@@ -18,19 +18,21 @@ public class ShooterSubsystem extends SubsystemBase {
   DoubleSolenoid shooter_solenoid = new DoubleSolenoid(Constants.Pneumatics.kShooterLidSolenoidID1, Constants.Pneumatics.kShooterLidSolenoidID2);
   DoubleSolenoid elevator_solenoid = new DoubleSolenoid(Constants.Pneumatics.kElevatorSolenoidID1, Constants.Pneumatics.kElevatorSolenoidID2);
   /** Creates a new Shooter. */
-  public ShooterSubsystem() {}
+  public ShooterSubsystem() {
+    elevator_solenoid.set(DoubleSolenoid.Value.kReverse);
+  }
 
   @Override
   public void periodic() {}
 
-  public void turnShooters(){
-    shooterLeft.set(Constants.Variables.kLeftShooterSpeed);
-    shooterRight.set(Constants.Variables.kRightShooterSpeed);
+  public void turnShooters(double speed){
+    shooterLeft.set(speed*-1);
+    shooterRight.set(speed);
   }
 
   public void stopShooters(){
-    shooterLeft.set(0);
-    shooterRight.set(0);
+    shooterLeft.set(Constants.Variables.kZero);
+    shooterRight.set(Constants.Variables.kZero);
   }
   public void pushShooterLid(){
     shooter_solenoid.set(DoubleSolenoid.Value.kForward);
@@ -41,11 +43,11 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void backElevator(){
-    elevator_solenoid.set(DoubleSolenoid.Value.kOff);
+    elevator_solenoid.set(DoubleSolenoid.Value.kReverse);
   }
 
   public void backShooterLid(){
-    shooter_solenoid.set(DoubleSolenoid.Value.kOff);
+    shooter_solenoid.set(DoubleSolenoid.Value.kReverse);
   }
   
 }
