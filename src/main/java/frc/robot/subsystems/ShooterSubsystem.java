@@ -19,7 +19,7 @@ public class ShooterSubsystem extends SubsystemBase {
   DoubleSolenoid elevator_solenoid = new DoubleSolenoid(Constants.Pneumatics.kElevatorSolenoidID1, Constants.Pneumatics.kElevatorSolenoidID2);
   /** Creates a new Shooter. */
   public ShooterSubsystem() {
-    elevator_solenoid.set(DoubleSolenoid.Value.kReverse);
+    
   }
 
   @Override

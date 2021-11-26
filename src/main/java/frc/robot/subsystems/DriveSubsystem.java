@@ -30,4 +30,8 @@ public class DriveSubsystem extends SubsystemBase {
   public void arcadeDrive(double speed, double rotation){
     robot.arcadeDrive(speed,rotation);
   }
+
+  public void stopMotors(){
+    robot.stopMotor();
+  }
 }

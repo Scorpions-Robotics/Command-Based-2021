@@ -16,6 +16,19 @@ public final class Constants {
     public final class OIConstants{
         public static final int kStickPort = 0;
         public static final int kControllerPort = 1;
+
+        public static final int button1 = 1;
+        public static final int button2 = 2;
+        public static final int button3 = 3;
+        public static final int button4 = 4;
+        public static final int button5 = 5;
+        public static final int button6 = 6;
+        public static final int button7 = 7; 
+        public static final int button8 = 8; 
+        public static final int button9 = 9;
+        public static final int button10 = 10;
+        public static final int button11 = 11;
+        public static final int button12 = 12;
     }
     public final class CANIDs{
         public static final int kLeftFollowerID = 5;
@@ -44,4 +57,5 @@ public final class Constants {
         public static final int kElevatorSolenoidID1 = 4;
         public static final int kElevatorSolenoidID2 = 5;
     }
+
 }

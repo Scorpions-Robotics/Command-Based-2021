@@ -16,7 +16,10 @@ import frc.robot.commands.IntakeAndBand;
 import frc.robot.commands.IntakePneumaticBack;
 import frc.robot.commands.IntakePneumaticPush;
 import frc.robot.commands.ShooterTurn;
-import frc.robot.commands.autonomous.Autonomous90DegreesTurn;
+import frc.robot.commands.autonomous.Autonomous90DegreesTurnLeft;
+import frc.robot.commands.autonomous.Autonomous90DegreesTurnRight;
+import frc.robot.commands.autonomous.PIDCommand_Test;
+import frc.robot.commands.autonomous.centerRobot;
 import frc.robot.commands.ShooterLidBack;
 import frc.robot.commands.ShooterLidPush;
 import frc.robot.subsystems.BandSubsystem;
@@ -39,18 +42,18 @@ public class RobotContainer {
   public static final Joystick stick = new Joystick(Constants.OIConstants.kStickPort);
   private final XboxController controller = new XboxController(Constants.OIConstants.kControllerPort);
 
-  private JoystickButton stick_button1 = new JoystickButton(stick, 1);
-  private JoystickButton stick_button2 = new JoystickButton(stick, 2);
-  private JoystickButton stick_button3 = new JoystickButton(stick, 3);
-  private JoystickButton stick_button4 = new JoystickButton(stick, 4);
-  private JoystickButton stick_button5 = new JoystickButton(stick, 5);
-  private JoystickButton stick_button6 = new JoystickButton(stick, 6);
-  private JoystickButton stick_button7 = new JoystickButton(stick, 7);
-  private JoystickButton stick_button8 = new JoystickButton(stick, 8);
-  private JoystickButton stick_button9 = new JoystickButton(stick, 9);
-  private JoystickButton stick_button10 = new JoystickButton(stick, 10);
-  private JoystickButton stick_button11 = new JoystickButton(stick, 11);
-  private JoystickButton stick_button12 = new JoystickButton(stick, 12);
+  private JoystickButton stick_button1 = new JoystickButton(stick, Constants.OIConstants.button1);
+  private JoystickButton stick_button2 = new JoystickButton(stick, Constants.OIConstants.button2);
+  private JoystickButton stick_button3 = new JoystickButton(stick, Constants.OIConstants.button3);
+  private JoystickButton stick_button4 = new JoystickButton(stick, Constants.OIConstants.button4);
+  private JoystickButton stick_button5 = new JoystickButton(stick, Constants.OIConstants.button5);
+  private JoystickButton stick_button6 = new JoystickButton(stick, Constants.OIConstants.button6);
+  private JoystickButton stick_button7 = new JoystickButton(stick, Constants.OIConstants.button7);
+  private JoystickButton stick_button8 = new JoystickButton(stick, Constants.OIConstants.button8);
+  private JoystickButton stick_button9 = new JoystickButton(stick, Constants.OIConstants.button9);
+  private JoystickButton stick_button10 = new JoystickButton(stick, Constants.OIConstants.button10);
+  private JoystickButton stick_button11 = new JoystickButton(stick, Constants.OIConstants.button11);
+  private JoystickButton stick_button12 = new JoystickButton(stick, Constants.OIConstants.button12);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -68,17 +71,24 @@ public class RobotContainer {
   private void configureButtonBindings() {
     stick_button1.whenPressed(new ShooterTurn(m_shootersubsystem,0.83));
     stick_button1.whenReleased(new ShooterTurn(m_shootersubsystem,0));
+
     stick_button5.whenPressed(new ShooterLidPush(m_shootersubsystem));
-    stick_button9.whenPressed(new ShooterLidBack(m_shootersubsystem));
+    stick_button5.whenReleased(new ShooterLidBack(m_shootersubsystem));
+
     stick_button2.whenPressed(new IntakeAndBand(m_intakesubsytem, m_bandsubsytem, -1));
     stick_button2.whenReleased(new IntakeAndBand(m_intakesubsytem, m_bandsubsytem, 0));
     stick_button3.whenPressed(new IntakeAndBand(m_intakesubsytem, m_bandsubsytem, 1));
     stick_button3.whenReleased(new IntakeAndBand(m_intakesubsytem, m_bandsubsytem, 0));
+
+    stick_button4.whenPressed(new centerRobot(m_drivesubsystem));
+
     stick_button6.whenPressed(new ElevatorPneumaticPush(m_shootersubsystem));
     stick_button7.whenPressed(new ElevatorPneumaticBack(m_shootersubsystem));
+
     stick_button11.whenPressed(new IntakePneumaticPush(m_intakesubsytem));
-    stick_button12.whenPressed(new IntakePneumaticBack(m_intakesubsytem));
-    stick_button4.whenPressed(new Autonomous90DegreesTurn(m_drivesubsystem));
+    stick_button11.whenReleased(new IntakePneumaticBack(m_intakesubsytem));
+
+    
   }
 
   /**
