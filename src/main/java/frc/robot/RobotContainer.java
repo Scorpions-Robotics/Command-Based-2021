@@ -16,14 +16,13 @@ import frc.robot.commands.IntakeAndBand;
 import frc.robot.commands.IntakePneumaticBack;
 import frc.robot.commands.IntakePneumaticPush;
 import frc.robot.commands.ShooterTurn;
-import frc.robot.commands.autonomous.Autonomous90DegreesTurnLeft;
-import frc.robot.commands.autonomous.Autonomous90DegreesTurnRight;
 import frc.robot.commands.autonomous.PIDCommand_Test;
 import frc.robot.commands.autonomous.centerRobot;
 import frc.robot.commands.ShooterLidBack;
 import frc.robot.commands.ShooterLidPush;
 import frc.robot.subsystems.BandSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.GyroSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
@@ -39,6 +38,7 @@ public class RobotContainer {
   ShooterSubsystem m_shootersubsystem = new ShooterSubsystem();
   IntakeSubsystem m_intakesubsytem = new IntakeSubsystem();
   BandSubsystem m_bandsubsytem = new BandSubsystem();
+  GyroSubsystem m_gyrosubsystem = new GyroSubsystem();
   public static final Joystick stick = new Joystick(Constants.OIConstants.kStickPort);
   private final XboxController controller = new XboxController(Constants.OIConstants.kControllerPort);
 
@@ -87,6 +87,8 @@ public class RobotContainer {
 
     stick_button11.whenPressed(new IntakePneumaticPush(m_intakesubsytem));
     stick_button11.whenReleased(new IntakePneumaticBack(m_intakesubsytem));
+
+    stick_button9.whenPressed(new PIDCommand_Test(m_drivesubsystem,m_gyrosubsystem));
 
     
   }
