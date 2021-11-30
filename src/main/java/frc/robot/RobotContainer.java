@@ -16,6 +16,7 @@ import frc.robot.commands.IntakeAndBand;
 import frc.robot.commands.IntakePneumaticBack;
 import frc.robot.commands.IntakePneumaticPush;
 import frc.robot.commands.ShooterTurn;
+import frc.robot.commands.autonomous.AutoDrive;
 import frc.robot.commands.autonomous.PIDCommand_Test;
 import frc.robot.commands.autonomous.centerRobot;
 import frc.robot.commands.ShooterLidBack;
@@ -88,7 +89,7 @@ public class RobotContainer {
     stick_button11.whenPressed(new IntakePneumaticPush(m_intakesubsytem));
     stick_button11.whenReleased(new IntakePneumaticBack(m_intakesubsytem));
 
-    stick_button9.whenPressed(new PIDCommand_Test(m_drivesubsystem,m_gyrosubsystem));
+    stick_button9.whenPressed(new centerRobot(m_drivesubsystem));
 
     
   }
@@ -98,8 +99,19 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
+  public Command getAutonomousCommand(Integer mode) {
     // An ExampleCommand will run in autonomous
+    if(mode==0){
+      return new AutoDrive(m_drivesubsystem, 0.4, 0);
+    }
+    else if(mode==1){
+      return new AutoDrive(m_drivesubsystem,0.4,0.4);
+
+    }
+    else if(mode==2){
+      return new AutoDrive(m_drivesubsystem,0.4,-0.4);
+    }
     return null;
+    
   }
 }

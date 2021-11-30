@@ -7,7 +7,9 @@ package frc.robot.commands.autonomous;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.commands.Drive;
 import frc.robot.subsystems.DriveSubsystem;
 
@@ -29,6 +31,8 @@ public class centerRobot extends CommandBase {
   double d;
   double r;
   double b;
+
+  PIDController pid = new PIDController(Constants.PID.kP,Constants.PID.kI,Constants.PID.kD);
 
   NetworkTableInstance inst = NetworkTableInstance.getDefault();
   NetworkTable table = inst.getTable("vision");
@@ -63,13 +67,13 @@ public class centerRobot extends CommandBase {
       w = Double.valueOf(wEntry.getString(""));
       h = Double.valueOf(hEntry.getString(""));
       d = Double.valueOf(dEntry.getString(""));
-      r = Double.valueOf(rEntry.getString(""));
+      r = Double.valueOf(rEntry.getString(""))/5;
       b = bEntry.getDouble(0.0);
       if(r>0){
-        m_drivesubsystem.arcadeDrive(0, 0.4);
+        m_drivesubsystem.arcadeDrive(0, pid.calculate(r,0));
       }
       else{
-        m_drivesubsystem.arcadeDrive(0, -0.4);
+        m_drivesubsystem.arcadeDrive(0, pid.calculate(r,0));
       }
     }
 

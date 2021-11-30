@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.ADIS_Gyro;
+import frc.robot.Constants;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GyroSubsystem;
 
@@ -21,7 +22,7 @@ public class PIDCommand_Test extends PIDCommand {
   public PIDCommand_Test(DriveSubsystem m_drivesubsystem, GyroSubsystem m_gyrosubsystem) {
     super(
         // The controller that the command will use
-        new PIDController(0.05, 0, 0),
+        new PIDController(Constants.PID.kP,Constants.PID.kI,Constants.PID.kD),
         // This should return the measurement
         () -> m_gyrosubsystem.getGyroAngle(),
         // This should return the setpoint (can also be a constant)
@@ -46,6 +47,9 @@ public void initialize() {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if(this.m_gyrosubsystem.getGyroAngle()>87&&this.m_gyrosubsystem.getGyroAngle()<93){
+      return true;
+    }
     return false;
   }
 }
