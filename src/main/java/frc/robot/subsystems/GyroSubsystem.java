@@ -38,6 +38,10 @@ public class GyroSubsystem extends SubsystemBase {
     return this.imu.getAngle() - drift;
 }
 
+public double getGyroRate(){
+  return this.imu.getRate();
+}
+
 public void resetGyro(){
     this.imu.reset();
     this.startTime = Timer.getFPGATimestamp();

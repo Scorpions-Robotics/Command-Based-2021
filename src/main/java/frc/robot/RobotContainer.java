@@ -56,9 +56,23 @@ public class RobotContainer {
   private JoystickButton stick_button11 = new JoystickButton(stick, Constants.OIConstants.button11);
   private JoystickButton stick_button12 = new JoystickButton(stick, Constants.OIConstants.button12);
 
+  private JoystickButton xbox_button1 = new JoystickButton(controller, Constants.OIConstants.button1);
+  private JoystickButton xbox_button2 = new JoystickButton(controller, Constants.OIConstants.button2);
+  private JoystickButton xbox_button3 = new JoystickButton(controller, Constants.OIConstants.button3);
+  private JoystickButton xbox_button4 = new JoystickButton(controller, Constants.OIConstants.button4);
+  private JoystickButton xbox_button5 = new JoystickButton(controller, Constants.OIConstants.button5);
+  private JoystickButton xbox_button6 = new JoystickButton(controller, Constants.OIConstants.button6);
+  private JoystickButton xbox_button7 = new JoystickButton(controller, Constants.OIConstants.button7);
+  private JoystickButton xbox_button8 = new JoystickButton(controller, Constants.OIConstants.button8);
+  private JoystickButton xbox_button9 = new JoystickButton(controller, Constants.OIConstants.button9);
+  private JoystickButton xbox_button10 = new JoystickButton(controller, Constants.OIConstants.button10);
+  private JoystickButton xbox_button11 = new JoystickButton(controller, Constants.OIConstants.button11);
+  private JoystickButton xbox_button12 = new JoystickButton(controller, Constants.OIConstants.button12);
+
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    m_drivesubsystem.setDefaultCommand(new Drive(m_drivesubsystem, stick.getThrottle()));
+    m_drivesubsystem.setDefaultCommand(new Drive(m_drivesubsystem, m_gyrosubsystem, stick.getThrottle()));
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -89,7 +103,8 @@ public class RobotContainer {
     stick_button11.whenPressed(new IntakePneumaticPush(m_intakesubsytem));
     stick_button11.whenReleased(new IntakePneumaticBack(m_intakesubsytem));
 
-    stick_button9.whenPressed(new centerRobot(m_drivesubsystem));
+    stick_button9.whenPressed(new PIDCommand_Test(m_drivesubsystem, m_gyrosubsystem));
+
 
     
   }

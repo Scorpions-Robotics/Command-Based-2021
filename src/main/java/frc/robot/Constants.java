@@ -14,9 +14,9 @@ package frc.robot;
  */
 public final class Constants {
     public final class OIConstants{
-        public static final int kStickPort = 0;
+        
         public static final int kControllerPort = 1;
-
+        public static final int kStickPort = 0;
         public static final int button1 = 1;
         public static final int button2 = 2;
         public static final int button3 = 3;
@@ -57,10 +57,10 @@ public final class Constants {
         public static final int kElevatorSolenoidID1 = 4;
         public static final int kElevatorSolenoidID2 = 5;
     }
-    public class PID{
-        public static final double kP = 0.009;
-        public static final double kI = 0;
-        public static final double kD = 0;
+    public static class PID{
+        public static final double kP = 0.03;
+        public static final double kI = 0.0005;
+        public static final double kD = 0.0025;
     }
 
 }

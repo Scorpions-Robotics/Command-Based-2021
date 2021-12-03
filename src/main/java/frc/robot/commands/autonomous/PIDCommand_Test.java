@@ -6,6 +6,7 @@ package frc.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.ADIS_Gyro;
 import frc.robot.Constants;
@@ -17,6 +18,7 @@ import frc.robot.subsystems.GyroSubsystem;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class PIDCommand_Test extends PIDCommand {
   GyroSubsystem m_gyrosubsystem;
+  DriveSubsystem m_drivesubsystem;
   
   /** Creates a new PIDCommand_Test. */
   public PIDCommand_Test(DriveSubsystem m_drivesubsystem, GyroSubsystem m_gyrosubsystem) {
@@ -26,12 +28,14 @@ public class PIDCommand_Test extends PIDCommand {
         // This should return the measurement
         () -> m_gyrosubsystem.getGyroAngle(),
         // This should return the setpoint (can also be a constant)
-        () -> 90,
+        () -> -90,
         // This uses the output
         output -> {
           m_drivesubsystem.arcadeDrive(0,-output);
+          SmartDashboard.putNumber("output",output);
         }, m_drivesubsystem);
         this.m_gyrosubsystem = m_gyrosubsystem;
+        this.m_drivesubsystem = m_drivesubsystem;
        
        
       
@@ -44,12 +48,14 @@ public void initialize() {
   this.m_gyrosubsystem.resetGyro();
 }
 
+@Override
+public void end(boolean interrupted) {
+  m_drivesubsystem.stopMotors();
+}
+
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(this.m_gyrosubsystem.getGyroAngle()>87&&this.m_gyrosubsystem.getGyroAngle()<93){
-      return true;
-    }
     return false;
   }
 }
