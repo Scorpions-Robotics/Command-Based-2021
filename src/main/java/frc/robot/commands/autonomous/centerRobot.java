@@ -8,6 +8,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.commands.Drive;
@@ -58,22 +59,26 @@ public class centerRobot extends CommandBase {
     bEntry = table.getEntry("B");
     rEntry = table.getEntry("R");
 
-    if(bEntry.getDouble(0.0)==0){
-      
+    b=Double.valueOf(bEntry.getString("0"));
+
+    if(b==0){
+      SmartDashboard.putNumber("B",b);
     }
     else{
-      x = Double.valueOf(xEntry.getString(""));
-      y = Double.valueOf(yEntry.getString(""));
-      w = Double.valueOf(wEntry.getString(""));
-      h = Double.valueOf(hEntry.getString(""));
-      d = Double.valueOf(dEntry.getString(""));
-      r = Double.valueOf(rEntry.getString(""))/5;
-      b = bEntry.getDouble(0.0);
+      x = Double.valueOf(xEntry.getString("0"));
+      y = Double.valueOf(yEntry.getString("0"));
+      w = Double.valueOf(wEntry.getString("0"));
+      h = Double.valueOf(hEntry.getString("0"));
+      d = Double.valueOf(dEntry.getString("0"));
+      r = Double.valueOf(rEntry.getString("0"));
+      SmartDashboard.putNumber("R",r);
+      
+      
       if(r>0){
-        m_drivesubsystem.arcadeDrive(0, pid.calculate(r,0));
+        m_drivesubsystem.arcadeDrive(0, pid.calculate(r/12,0));
       }
       else{
-        m_drivesubsystem.arcadeDrive(0, pid.calculate(r,0));
+        m_drivesubsystem.arcadeDrive(0, pid.calculate(r/12,0));
       }
     }
 
@@ -89,7 +94,7 @@ public class centerRobot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(r<10&&r>-10){
+    if(r<20&&r>-20){
       return true;
     }
     return false;
