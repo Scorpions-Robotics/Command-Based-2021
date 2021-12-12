@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
-import frc.robot.commands.autonomous.PIDCommand_Test;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GyroSubsystem;
 
@@ -56,17 +55,5 @@ public class Drive extends CommandBase {
   @Override
   public boolean isFinished() {
     return false;
-  }
-
-  public void check_rate(){
-    double rate = m_gyrosubsystem.getGyroRate();
-    SmartDashboard.putNumber("X", joystick_x);
-    SmartDashboard.putBoolean("Boolean", !(joystick_x>0.3||joystick_x<-0.3));
-    if(!(joystick_x>0.1||joystick_x<-0.1)){
-      SmartDashboard.putNumber("Rate: ", m_gyrosubsystem.getGyroRate());
-      if(rate > 50) {
-        new PIDCommand_Test(m_drivesubsystem, m_gyrosubsystem).schedule();
-      }
-    }    
   }
 }

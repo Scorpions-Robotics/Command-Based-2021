@@ -103,7 +103,8 @@ public class RobotContainer {
     stick_button11.whenPressed(new IntakePneumaticPush(m_intakesubsytem));
     stick_button11.whenReleased(new IntakePneumaticBack(m_intakesubsytem));
 
-    stick_button9.whenPressed(new PIDCommand_Test(m_drivesubsystem, m_gyrosubsystem));
+    stick_button9.whenPressed(new PIDCommand_Test(m_drivesubsystem, m_gyrosubsystem,1));
+    stick_button9.whenReleased(new PIDCommand_Test(m_drivesubsystem,m_gyrosubsystem,0));
 
 
     

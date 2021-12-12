@@ -19,16 +19,17 @@ import frc.robot.subsystems.GyroSubsystem;
 public class PIDCommand_Test extends PIDCommand {
   GyroSubsystem m_gyrosubsystem;
   DriveSubsystem m_drivesubsystem;
+  int mode;
   
   /** Creates a new PIDCommand_Test. */
-  public PIDCommand_Test(DriveSubsystem m_drivesubsystem, GyroSubsystem m_gyrosubsystem) {
+  public PIDCommand_Test(DriveSubsystem m_drivesubsystem, GyroSubsystem m_gyrosubsystem, int mode) {
     super(
         // The controller that the command will use
         new PIDController(Constants.PID.kP,Constants.PID.kI,Constants.PID.kD),
         // This should return the measurement
         () -> m_gyrosubsystem.getGyroAngle(),
         // This should return the setpoint (can also be a constant)
-        () -> -90,
+        () -> 0,
         // This uses the output
         output -> {
           m_drivesubsystem.arcadeDrive(0,-output);
@@ -36,7 +37,7 @@ public class PIDCommand_Test extends PIDCommand {
         }, m_drivesubsystem);
         this.m_gyrosubsystem = m_gyrosubsystem;
         this.m_drivesubsystem = m_drivesubsystem;
-       
+        this.mode = mode;
        
       
     // Use addRequirements() here to declare subsystem dependencies.
@@ -56,6 +57,9 @@ public void end(boolean interrupted) {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if(mode==0){
+      return true;
+    }
     return false;
   }
 }
