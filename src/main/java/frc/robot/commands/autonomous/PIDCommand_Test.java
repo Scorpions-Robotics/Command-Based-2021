@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.ADIS_Gyro;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GyroSubsystem;
 
@@ -32,7 +33,7 @@ public class PIDCommand_Test extends PIDCommand {
         () -> 0,
         // This uses the output
         output -> {
-          m_drivesubsystem.arcadeDrive(0,-output);
+          m_drivesubsystem.arcadeDrive(RobotContainer.stick.getY(),-output);
           SmartDashboard.putNumber("output",output);
         }, m_drivesubsystem);
         this.m_gyrosubsystem = m_gyrosubsystem;

@@ -17,6 +17,7 @@ import frc.robot.commands.IntakePneumaticBack;
 import frc.robot.commands.IntakePneumaticPush;
 import frc.robot.commands.ShooterTurn;
 import frc.robot.commands.autonomous.AutoDrive;
+import frc.robot.commands.autonomous.FixedPositionCentered;
 import frc.robot.commands.autonomous.PIDCommand_Test;
 import frc.robot.commands.autonomous.centerRobot;
 import frc.robot.commands.ShooterLidBack;
@@ -95,7 +96,8 @@ public class RobotContainer {
     stick_button3.whenPressed(new IntakeAndBand(m_intakesubsytem, m_bandsubsytem, 1));
     stick_button3.whenReleased(new IntakeAndBand(m_intakesubsytem, m_bandsubsytem, 0));
 
-    stick_button4.whenPressed(new centerRobot(m_drivesubsystem));
+    stick_button4.whenPressed(new FixedPositionCentered(m_drivesubsystem,m_gyrosubsystem,1));
+    stick_button4.whenReleased(new FixedPositionCentered(m_drivesubsystem,m_gyrosubsystem,0));
 
     stick_button6.whenPressed(new ElevatorPneumaticPush(m_shootersubsystem));
     stick_button7.whenPressed(new ElevatorPneumaticBack(m_shootersubsystem));

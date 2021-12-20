@@ -33,14 +33,18 @@ public class centerRobot extends CommandBase {
   double r;
   double b;
 
+  int mode;
+
   PIDController pid = new PIDController(Constants.PID.kP,Constants.PID.kI,Constants.PID.kD);
 
   NetworkTableInstance inst = NetworkTableInstance.getDefault();
   NetworkTable table = inst.getTable("vision");
   /** Creates a new centerRobot. */
-  public centerRobot(DriveSubsystem m_drivesubsystem) {
+  public centerRobot(DriveSubsystem m_drivesubsystem, int mode) {
     this.m_drivesubsystem = m_drivesubsystem;
+    this.mode = mode;
     addRequirements(m_drivesubsystem);
+    
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -94,6 +98,9 @@ public class centerRobot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if(mode==0){
+      return true;
+    }
     if(r<20&&r>-20){
       return true;
     }
