@@ -37,7 +37,7 @@ public class centerRobot extends CommandBase {
 
   PIDController pid = new PIDController(Constants.PID.kP,Constants.PID.kI,Constants.PID.kD);
 
-  NetworkTableInstance inst = NetworkTableInstance.getDefault();
+  NetworkTableInstance inst = NetworkTableInstance.create();
   NetworkTable table = inst.getTable("vision");
   /** Creates a new centerRobot. */
   public centerRobot(DriveSubsystem m_drivesubsystem, int mode) {
@@ -50,7 +50,7 @@ public class centerRobot extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {inst.startClient("roborio-7672-frc.local");}
+  public void initialize() {inst.startClient("10.76.72.10");}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
